@@ -1,6 +1,5 @@
 #include <iostream>
-#include "grid.h"
-#include "src/blocks.cpp"
+#include "game.h"
 extern "C" {
 #include <raylib.h>
 }
@@ -11,21 +10,24 @@ int main() {
     InitWindow(screenWidth, screenHeight, "Tetris - Raylib");
     SetTargetFPS(60); // Set the game to run at 60 frames per second
 
-    Grid grid = Grid(); // Create a Grid object
+    // Grid grid = Grid(); // Create a Grid object
     // grid.grid[0][0] = 1;
     // grid.grid[3][9] = 2;
     // grid.grid[3][4] = 3;
-    Tblock block; //= Zblock();
-    grid.Print(); // Print the grid to the console
+    // grid.Print(); // Print the grid to the console
+
+    // Iblock block; //= Zblock();
+    // block.Move(0,0);
+    Game game = Game(); // Create a Game object
     // Main game loop
     while (!WindowShouldClose()) { // Detect window close button or ESC key
         // Update
 
         // Draw
+        game.handleInput();
         BeginDrawing();
         ClearBackground(DARKBLUE);
-        grid.Draw(); // Draw the grid
-        block.Draw();
+        game.Draw(); // Draw the grid
         DrawText("Welcome to Tetris!", 50, 200, 20, LIGHTGRAY);
 
         EndDrawing();

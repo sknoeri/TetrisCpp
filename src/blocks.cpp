@@ -31,6 +31,7 @@ public:
         cells[1] = {blockPosition(0,2),blockPosition(1,2),blockPosition(2,2),blockPosition(3,2)};
         cells[2] = {blockPosition(2,0),blockPosition(2,1),blockPosition(2,2),blockPosition(2,3)};
         cells[3] = {blockPosition(0,1),blockPosition(1,1),blockPosition(2,1),blockPosition(3,1)};
+        Move(-1,0);
     };
 };
 
@@ -39,6 +40,7 @@ public:
     Oblock(){
         id = 4;
         cells[0] = {blockPosition(0,0),blockPosition(1,0),blockPosition(0,1),blockPosition(1,1)};
+        Move(0,1);
     };
 };
 

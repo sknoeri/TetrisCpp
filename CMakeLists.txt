@@ -13,6 +13,7 @@ set(INC_FILES
     inc/block.h
     inc/blockPosition.h
     inc/colors.h
+    inc/game.h
 )
 
 # Set source directories
@@ -25,6 +26,7 @@ set(SRC_FILES
     src/block.cpp
     src/blockPosition.cpp
     src/colors.cpp
+    src/game.cpp
 )
 
 

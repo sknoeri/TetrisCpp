@@ -9,6 +9,7 @@ public:
     void Initalize();
     void Print();
     void Draw(); // Function to draw the grid
+    bool isCellOutside(int row, int column);
     int grid[20][10]; // 20 rows and 10 columns
 private:
     int numRows;
