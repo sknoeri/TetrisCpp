@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <raylib.h> // Include raylib for graphics
+#include "colors.h"
 class Grid {
 public:
     Grid();
@@ -10,7 +11,6 @@ public:
     void Draw(); // Function to draw the grid
     int grid[20][10]; // 20 rows and 10 columns
 private:
-    std::vector<Color> getCellColors(); // Function to get colors for each cell
     int numRows;
     int numCols;
     int cellSize;

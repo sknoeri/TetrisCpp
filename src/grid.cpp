@@ -1,5 +1,6 @@
 #include "grid.h"
 
+
 Grid::Grid() {
     numRows = 20; // Number of rows in the grid
     numCols = 10; // Number of columns in the grid
@@ -26,18 +27,6 @@ void Grid::Print() {
     }
 }
 
-std::vector<Color> Grid::getCellColors() {
-    Color darkGrey = DARKGRAY;
-    Color green = GREEN;
-    Color red = RED;
-    Color blue = BLUE;
-    Color yellow = YELLOW;
-    Color purple = PURPLE;
-    Color orange = ORANGE;
-    Color cyan = {21,204,209,255};
-    // The order of the vecotr matters because it is used to color the blocks
-    return {darkGrey, green, red, blue, yellow, purple, orange, cyan};
-}
 void Grid::Draw() {
     // Draw the grid
     for ( int i = 0; i<numRows; i++) {

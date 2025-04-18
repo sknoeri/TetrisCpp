@@ -10,6 +10,9 @@ set(INC_DIRECTORI
 # Set include files
 set(INC_FILES
     inc/grid.h
+    inc/block.h
+    inc/blockPosition.h
+    inc/colors.h
 )
 
 # Set source directories
@@ -19,6 +22,9 @@ set(SRC_DIRECTORI
 # Set source files
 set(SRC_FILES
     src/grid.cpp
+    src/block.cpp
+    src/blockPosition.cpp
+    src/colors.cpp
 )
 
 
