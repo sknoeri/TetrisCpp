@@ -17,9 +17,9 @@ public:
     Jblock(){
         id = 2;
         cells[0] = {blockPosition(0,0),blockPosition(1,0),blockPosition(1,1),blockPosition(1,2)};
-        cells[1] = {blockPosition(0,1),blockPosition(0,2),blockPosition(1,1),blockPosition(1,2)};
+        cells[1] = {blockPosition(0,1),blockPosition(0,2),blockPosition(1,1),blockPosition(2,1)};
         cells[2] = {blockPosition(1,0),blockPosition(1,1),blockPosition(1,2),blockPosition(2,2)};
-        cells[3] = {blockPosition(0,1),blockPosition(1,1),blockPosition(1,2),blockPosition(2,0)};
+        cells[3] = {blockPosition(0,1),blockPosition(1,1),blockPosition(2,1),blockPosition(2,0)};
     };
 };
 

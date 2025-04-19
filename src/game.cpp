@@ -28,6 +28,7 @@ std::vector<Block> Game::getAllBlocks()
 void Game::Draw()
 {
     grid.Draw();
+    DrawText("Welcome to Tetris!", 50, 200, 20, LIGHTGRAY);
     currentBlock.Draw();
 }
 
@@ -45,6 +46,8 @@ void Game::handleInput()
     case KEY_DOWN:
         moveBlockDown();
         break;
+    case KEY_UP:
+        rotateBlock();
     default:
         break;
     }
@@ -53,7 +56,7 @@ void Game::handleInput()
 void Game::moveBlockLeft()
 {
     currentBlock.Move(0,-1);
-    if (isBlockOutside())
+    if (isBlockOutside() || blockFits()==false)
     {
         currentBlock.Move(0,1);
     }
@@ -63,7 +66,7 @@ void Game::moveBlockLeft()
 void Game::moveBlockRight()
 {
     currentBlock.Move(0,1);
-    if (isBlockOutside())
+    if (isBlockOutside() || blockFits()==false)
     {
         currentBlock.Move(0,-1);
     }
@@ -72,11 +75,34 @@ void Game::moveBlockRight()
 void Game::moveBlockDown()
 {
     currentBlock.Move(1,0);
-    if (isBlockOutside())
+    if (isBlockOutside() || blockFits()==false)
     {
         currentBlock.Move(-1,0);
+        lockBlock();
     }
 }
+
+void Game::lockBlock()
+{
+    std::vector<blockPosition> tiles = currentBlock.getCellPositions();
+    for(blockPosition item :tiles)
+    {
+        grid.grid[item.row][item.column] = currentBlock.id; // fixes the block in the grid
+    }
+    currentBlock = nextBlock; // spawns a new block
+    nextBlock = getRandomBlock();
+    grid.clearFullRows(); // return the score
+}
+
+void Game::rotateBlock()
+{
+    currentBlock.Rotate();
+    if(isBlockOutside()==true || blockFits() == false)
+    {
+        currentBlock.undoRotation();
+    }
+}
+
 
 bool Game::isBlockOutside()
 {
@@ -90,4 +116,17 @@ bool Game::isBlockOutside()
         
     }
     return false;
+}
+
+bool Game::blockFits()
+{
+    std::vector<blockPosition> tiles = currentBlock.getCellPositions();
+    for(blockPosition item: tiles)
+    {
+        if (grid.isCellEmpy(item.row,item.column) == false)
+        {
+            return false;
+        }
+    }
+    return true;
 }

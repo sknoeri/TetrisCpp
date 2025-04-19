@@ -48,3 +48,63 @@ bool Grid::isCellOutside(int row, int column)
         return true;
     }
 }
+
+bool Grid::isCellEmpy(int row, int col)
+{
+    if(grid[row][col]==0)
+    {
+        return true;
+    }else
+    {
+        return false;
+    }
+}
+
+int Grid::clearFullRows()
+{
+    int completed = 0;
+    for(int row = numRows-1; row>=0; row--)
+    {
+        if(isRowFull(row))
+        {
+            clearRow(row);
+            completed ++;
+        }
+        else if (completed>0)
+        {
+            moveRowDown(row,completed);
+        }
+        
+    }
+    return completed;
+}
+
+
+bool Grid::isRowFull(int row)
+{
+    for(int col=0; col < numCols; col++)
+    {
+        if(grid[row][col] == 0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void Grid::clearRow(int row)
+{
+    for(int col=0; col<numCols; col++)
+    {
+        grid[row][col] == 0;
+    }
+}
+
+void Grid::moveRowDown(int row, int numDownRows)
+{
+    for(int col = 0; col < numCols; col++)
+    {
+        grid[row + numDownRows][col] = grid[row][col];
+        grid[row][col] = 0;
+    }
+}

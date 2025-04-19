@@ -1,9 +1,26 @@
 #include <iostream>
+#include <ctime>
 #include "game.h"
 extern "C" {
 #include <raylib.h>
 }
+
+double lastUpdateTime = 0;
+
+bool eventTriggered(double interval)
+{
+    double currentTime = GetTime();
+    if(currentTime - lastUpdateTime >= interval)
+    {
+        lastUpdateTime = currentTime;
+        return true;
+    }else{
+        return false;
+    }
+}
+
 int main() {
+    srand(time(NULL));
     // Initialization
     const int screenWidth = 300;
     const int screenHeight = 600;
@@ -25,10 +42,14 @@ int main() {
 
         // Draw
         game.handleInput();
+        if(eventTriggered(0.5)==true)
+        {
+            game.moveBlockDown();
+        }
         BeginDrawing();
         ClearBackground(DARKBLUE);
         game.Draw(); // Draw the grid
-        DrawText("Welcome to Tetris!", 50, 200, 20, LIGHTGRAY);
+        
 
         EndDrawing();
     }
