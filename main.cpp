@@ -42,7 +42,7 @@ int main() {
 
         // Draw
         game.handleInput();
-        if(eventTriggered(0.5)==true)
+        if(eventTriggered(0.01)==true)
         {
             game.moveBlockDown();
         }

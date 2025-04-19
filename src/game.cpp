@@ -6,6 +6,7 @@ Game::Game()
     blocks = getAllBlocks();
     currentBlock = getRandomBlock();
     nextBlock = getRandomBlock();
+    GameOver = false;
 };
 
 Block Game::getRandomBlock()
@@ -55,30 +56,38 @@ void Game::handleInput()
 
 void Game::moveBlockLeft()
 {
-    currentBlock.Move(0,-1);
-    if (isBlockOutside() || blockFits()==false)
+    if(!GameOver)
     {
-        currentBlock.Move(0,1);
-    }
-    
+        currentBlock.Move(0,-1);
+        if (isBlockOutside() || blockFits()==false)
+        {
+            currentBlock.Move(0,1);
+        }
+    } 
 }
 
 void Game::moveBlockRight()
 {
-    currentBlock.Move(0,1);
-    if (isBlockOutside() || blockFits()==false)
+    if(!GameOver)
     {
-        currentBlock.Move(0,-1);
+        currentBlock.Move(0,1);
+        if (isBlockOutside() || blockFits()==false)
+        {
+            currentBlock.Move(0,-1);
+        }
     }
 }
 
 void Game::moveBlockDown()
 {
-    currentBlock.Move(1,0);
-    if (isBlockOutside() || blockFits()==false)
+    if(!GameOver)
     {
-        currentBlock.Move(-1,0);
-        lockBlock();
+        currentBlock.Move(1,0);
+        if (isBlockOutside() || blockFits()==false)
+        {
+            currentBlock.Move(-1,0);
+            lockBlock();
+        }
     }
 }
 
@@ -90,16 +99,23 @@ void Game::lockBlock()
         grid.grid[item.row][item.column] = currentBlock.id; // fixes the block in the grid
     }
     currentBlock = nextBlock; // spawns a new block
+    if(blockFits()==false)
+    {
+        GameOver = true;
+    }
     nextBlock = getRandomBlock();
     grid.clearFullRows(); // return the score
 }
 
 void Game::rotateBlock()
 {
-    currentBlock.Rotate();
-    if(isBlockOutside()==true || blockFits() == false)
+    if(!GameOver)
     {
-        currentBlock.undoRotation();
+        currentBlock.Rotate();
+        if(isBlockOutside()==true || blockFits() == false)
+        {
+            currentBlock.undoRotation();
+        }
     }
 }
 
