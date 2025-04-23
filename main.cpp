@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include "game.h"
+#include "colors.h"
 extern "C" {
 #include <raylib.h>
 }
@@ -22,8 +23,8 @@ bool eventTriggered(double interval)
 int main() {
     srand(time(NULL));
     // Initialization
-    const int screenWidth = 300;
-    const int screenHeight = 600;
+    const int screenWidth = 600;
+    const int screenHeight = 610;
     InitWindow(screenWidth, screenHeight, "Tetris - Raylib");
     SetTargetFPS(60); // Set the game to run at 60 frames per second
 
@@ -42,12 +43,14 @@ int main() {
 
         // Draw
         game.handleInput();
-        if(eventTriggered(0.01)==true)
+        if(eventTriggered(0.2)==true)
         {
             game.moveBlockDown();
         }
         BeginDrawing();
         ClearBackground(DARKBLUE);
+        DrawText("Score", 420, 5, 20, LIGHTGRAY);
+        DrawRectangleRounded({370, 25, 170, 60}, 1.2, 6, lightblue);
         game.Draw(); // Draw the grid
         
 
