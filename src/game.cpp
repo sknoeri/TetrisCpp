@@ -7,6 +7,7 @@ Game::Game()
     currentBlock = getRandomBlock();
     nextBlock = getRandomBlock();
     GameOver = false;
+    score  = 0;
 };
 
 Block Game::getRandomBlock()
@@ -31,6 +32,11 @@ void Game::Draw()
     grid.Draw();
     DrawText("Welcome to Tetris!", 50, 200, 20, LIGHTGRAY);
     currentBlock.Draw();
+    nextBlock.Draw(); // must do somehow in the ui grid
+    if(GameOver)
+    {
+        DrawText("Game Over!", 315, 400, 50, LIGHTGRAY);
+    }
 }
 
 void Game::handleInput()
@@ -39,6 +45,7 @@ void Game::handleInput()
     if (GameOver && keyPressed!=0)
     {
         GameOver = false;
+        score = 0;
         Reset();
     }
     
@@ -110,7 +117,7 @@ void Game::lockBlock()
         GameOver = true;
     }
     nextBlock = getRandomBlock();
-    grid.clearFullRows(); // return the score
+    score += grid.clearFullRows(); // return the score
 }
 
 void Game::rotateBlock()

@@ -51,6 +51,9 @@ int main() {
         ClearBackground(DARKBLUE);
         DrawText("Score", 420, 5, 20, LIGHTGRAY);
         DrawRectangleRounded({370, 25, 170, 60}, 1.2, 6, lightblue);
+        DrawText(std::to_string(game.score).c_str(), 445, 35, 40, LIGHTGRAY);
+        DrawText("Next Block", 400, 120, 20, LIGHTGRAY);
+        DrawRectangleRounded({330, 145, 250, 200}, 0.5, 6, lightblue);
         game.Draw(); // Draw the grid
         
 
