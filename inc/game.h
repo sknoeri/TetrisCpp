@@ -21,6 +21,7 @@ private:
     bool isBlockOutside();
     bool blockFits();
     void Reset();
+    void updateScore(int rowsCleard);
     void rotateBlock();
     void lockBlock();
     std::vector<Block> blocks;

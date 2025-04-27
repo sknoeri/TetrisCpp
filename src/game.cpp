@@ -31,8 +31,8 @@ void Game::Draw()
 {
     grid.Draw();
     DrawText("Welcome to Tetris!", 50, 200, 20, LIGHTGRAY);
-    currentBlock.Draw();
-    nextBlock.Draw(); // must do somehow in the ui grid
+    currentBlock.Draw(6,6);
+    nextBlock.Draw(310,210); // must do somehow in the ui grid
     if(GameOver)
     {
         DrawText("Game Over!", 315, 400, 50, LIGHTGRAY);
@@ -117,7 +117,7 @@ void Game::lockBlock()
         GameOver = true;
     }
     nextBlock = getRandomBlock();
-    score += grid.clearFullRows(); // return the score
+    updateScore(grid.clearFullRows()); // return the score
 }
 
 void Game::rotateBlock()
@@ -164,4 +164,25 @@ void Game::Reset()
 {
     grid.Initalize(); 
     // optinally intialize a new block = GetAllblocks() currentBlock= get random etc
+}
+
+void Game::updateScore(int rowsCleard)
+{
+    switch (rowsCleard)
+    {
+    case 1:
+        score +=1;
+        break;
+    case 2:
+        score +=2;
+        break;
+    case 3:
+        score +=3;
+        break;
+    case 4:
+        score +=4;
+        break;
+    default:
+        break;
+    }
 }
